@@ -14,7 +14,7 @@ import {z} from 'genkit';
 
 const AskQuestionInputSchema = z.object({
   question: z.string().describe('The question to be answered.'),
-  content: z.string().describe('The content of the landing page.'),
+  content: z.string().describe('The summary of the content of the landing page.'),
 });
 export type AskQuestionInput = z.infer<typeof AskQuestionInputSchema>;
 
@@ -32,12 +32,13 @@ const prompt = ai.definePrompt({
   input: {schema: AskQuestionInputSchema},
   output: {schema: AskQuestionOutputSchema},
   prompt: `You are an AI assistant that answers questions about the content of a landing page.
+  You will be provided with a summary of the page content.
 
-  Content: {{{content}}}
+  Page Content Summary: {{{content}}}
 
   Question: {{{question}}}
 
-  Answer:`,
+  Based on the summary, provide an answer:`,
 });
 
 const askQuestionFlow = ai.defineFlow(
@@ -47,7 +48,11 @@ const askQuestionFlow = ai.defineFlow(
     outputSchema: AskQuestionOutputSchema,
   },
   async input => {
-    const {output} = await prompt(input);
-    return output!;
+    const response = await prompt(input);
+    if (!response.output || typeof response.output.answer !== 'string') {
+      console.error("Genkit prompt response did not contain a valid output structure:", response);
+      throw new Error('AI model did not return a valid answer.');
+    }
+    return response.output;
   }
 );
