@@ -1,7 +1,8 @@
+
 import Image from 'next/image';
 import type { LucideIcon } from 'lucide-react';
 import * as LucideIcons from 'lucide-react';
-import { Card, CardContent } from '@/components/ui/card'; // Removed CardHeader, CardDescription, CardTitle as they are not used here
+import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import SectionWrapper from '@/components/sections/SectionWrapper';
 
 // Define more specific types for content structure
@@ -13,6 +14,7 @@ interface ContentBlock {
 interface Model {
   name: string;
   description: string;
+  "data-ai-hint"?: string; // Optional hint for image
 }
 
 interface Feature {
@@ -23,11 +25,13 @@ interface Feature {
 interface Application {
   name: string;
   description: string;
+  "data-ai-hint"?: string; // Optional hint for image
 }
 
 interface Advantage {
   name: string;
   description: string;
+  "data-ai-hint"?: string; // Optional hint for image
 }
 
 interface Development {
@@ -55,15 +59,39 @@ interface ContentDisplaySectionProps {
   sections: ContentSectionItem[];
 }
 
+// Helper function to render grid items
+const renderGridItem = (item: Model | Application | Advantage, sectionId: string, itemType: string) => (
+  <Card key={`${itemType}-${sectionId}-${item.name.replace(/\s+/g, '-')}`} className="flex flex-col overflow-hidden shadow-md transition-all duration-300 hover:shadow-lg">
+    <div className="aspect-[16/10] w-full overflow-hidden">
+      <Image
+        src={`https://placehold.co/400x250.png`}
+        alt={item.name}
+        width={400}
+        height={250}
+        className="object-cover w-full h-full transition-transform duration-500 hover:scale-105"
+        data-ai-hint={item["data-ai-hint"] || item.name.toLowerCase().split(' ').slice(0,2).join(' ') || "concept item"}
+      />
+    </div>
+    <CardHeader>
+      <CardTitle className="font-headline text-xl text-primary">{item.name}</CardTitle>
+    </CardHeader>
+    <CardContent className="flex-grow">
+      <p className="text-foreground/80 font-body text-base">{item.description}</p>
+    </CardContent>
+  </Card>
+);
+
 export default function ContentDisplaySection({ sections }: ContentDisplaySectionProps) {
   return (
     <>
       {sections.map((section, index) => {
         const IconComponent = LucideIcons[section.icon] as LucideIcon;
+        const isGridSection = !!(section.models || section.applications || section.advantages);
 
+        // textContentElements are for non-grid sections or parts of grid sections if needed elsewhere
         const textContentElements = (
           <>
-            {section.paragraphs && section.paragraphs.map((p, i) => (
+            {section.paragraphs && !isGridSection && section.paragraphs.map((p, i) => (
               <p key={`para-${section.id}-${i}`} className="leading-relaxed text-foreground/90">{p}</p>
             ))}
 
@@ -76,17 +104,6 @@ export default function ContentDisplaySection({ sections }: ContentDisplaySectio
                       {cb.points.map((pt, j) => <li key={`cb-pt-${section.id}-${i}-${j}`}>{pt}</li>)}
                     </ul>
                   </div>
-                ))}
-              </div>
-            )}
-
-            {section.models && (
-              <div className="space-y-4">
-                {section.models.map((model, i) => (
-                   <Card key={`model-${section.id}-${i}`} className="bg-primary/5 p-4 rounded-lg shadow-sm">
-                     <h4 className="font-headline text-xl font-semibold text-primary mb-1">{model.name}</h4>
-                     <p className="text-foreground/80">{model.description}</p>
-                   </Card>
                 ))}
               </div>
             )}
@@ -122,28 +139,6 @@ export default function ContentDisplaySection({ sections }: ContentDisplaySectio
               </div>
             )}
 
-            {section.applications && (
-              <div className="grid md:grid-cols-2 gap-4">
-                {section.applications.map((app, i) => (
-                  <Card key={`app-${section.id}-${i}`} className="bg-primary/5 p-4 rounded-lg shadow-sm">
-                    <h4 className="font-headline text-xl font-semibold text-primary mb-1">{app.name}</h4>
-                    <p className="text-foreground/80">{app.description}</p>
-                  </Card>
-                ))}
-              </div>
-            )}
-
-            {section.advantages && (
-              <div className="space-y-4">
-                 {section.advantages.map((adv, i) => (
-                   <Card key={`adv-${section.id}-${i}`} className="bg-primary/5 p-4 rounded-lg shadow-sm">
-                     <h4 className="font-headline text-xl font-semibold text-primary mb-1">{adv.name}</h4>
-                     <p className="text-foreground/80">{adv.description}</p>
-                   </Card>
-                ))}
-              </div>
-            )}
-
             {section.developments && (
               <div className="p-4 border rounded-lg bg-background shadow-sm">
                 <h4 className="font-headline text-xl font-semibold text-primary mb-2">{section.developments.title}</h4>
@@ -163,31 +158,71 @@ export default function ContentDisplaySection({ sections }: ContentDisplaySectio
             Icon={IconComponent} 
             className={index % 2 === 0 ? 'bg-background' : 'bg-secondary/70'}
           >
-            <Card className="max-w-4xl mx-auto shadow-xl overflow-hidden transition-all duration-300 hover:shadow-2xl">
-              <CardContent className="p-6 text-lg font-body">
-                {section.image ? (
-                  <div className="flex flex-col md:flex-row gap-6 md:gap-8 items-start">
-                    <div className="w-full md:w-2/5 flex-shrink-0">
-                      <div className="rounded-xl shadow-lg overflow-hidden">
-                        <Image
-                          src={section.image.src}
-                          alt={section.image.alt}
-                          width={600} 
-                          height={400} 
-                          className="rounded-xl object-cover w-full h-auto transition-transform duration-500 hover:scale-105"
-                          data-ai-hint={section.image['data-ai-hint']}
-                        />
+            {isGridSection && section.paragraphs && section.paragraphs.length > 0 && (
+              <div className="max-w-3xl mx-auto mb-8 text-center">
+                {section.paragraphs.map((p, i) => (
+                  <p key={`intro-p-${section.id}-${i}`} className="text-lg text-foreground/80 font-body">{p}</p>
+                ))}
+              </div>
+            )}
+
+            <Card className={`mx-auto shadow-xl overflow-hidden transition-all duration-300 hover:shadow-2xl ${isGridSection ? 'max-w-6xl bg-transparent border-none shadow-none hover:shadow-none' : 'max-w-4xl'}`}>
+              <CardContent className={`text-lg font-body ${isGridSection ? 'p-0' : 'p-6'}`}>
+                {(() => {
+                  if (section.models) {
+                    return (
+                      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+                        {section.models.map(model => renderGridItem(model, section.id, 'model'))}
                       </div>
-                    </div>
-                    <div className="w-full md:w-3/5 space-y-4">
-                      {textContentElements}
-                    </div>
-                  </div>
-                ) : (
-                  <div className="space-y-6">
-                    {textContentElements}
-                  </div>
-                )}
+                    );
+                  } else if (section.applications) {
+                    return (
+                      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+                        {section.applications.map(app => renderGridItem(app, section.id, 'application'))}
+                      </div>
+                    );
+                  } else if (section.advantages) {
+                    return (
+                      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+                        {section.advantages.map(adv => renderGridItem(adv, section.id, 'advantage'))}
+                      </div>
+                    );
+                  } else if (section.image) {
+                    return (
+                      <div className="flex flex-col md:flex-row gap-6 md:gap-8 items-start">
+                        <div className="w-full md:w-2/5 flex-shrink-0">
+                          <div className="rounded-xl shadow-lg overflow-hidden bg-accent p-1">
+                            <Image
+                              src={section.image.src}
+                              alt={section.image.alt}
+                              width={600} 
+                              height={400} 
+                              className="rounded-lg object-cover w-full h-auto transition-transform duration-500 hover:scale-105"
+                              data-ai-hint={section.image['data-ai-hint']}
+                            />
+                          </div>
+                        </div>
+                        <div className="w-full md:w-3/5 space-y-4">
+                           {/* Render paragraphs if they exist and it's not a grid section already handling them above */}
+                           {section.paragraphs && section.paragraphs.map((p, i) => (
+                            <p key={`para-img-${section.id}-${i}`} className="leading-relaxed text-foreground/90">{p}</p>
+                          ))}
+                          {textContentElements} {/* This renders other content blocks like features, etc. */}
+                        </div>
+                      </div>
+                    );
+                  } else {
+                    return (
+                      <div className="space-y-6">
+                        {/* Render paragraphs if they exist and it's not a grid section */}
+                        {section.paragraphs && section.paragraphs.map((p, i) => (
+                          <p key={`para-solo-${section.id}-${i}`} className="leading-relaxed text-foreground/90">{p}</p>
+                        ))}
+                        {textContentElements}
+                      </div>
+                    );
+                  }
+                })()}
               </CardContent>
             </Card>
           </SectionWrapper>
