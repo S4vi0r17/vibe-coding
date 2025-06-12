@@ -92,6 +92,13 @@ const nextConfig: NextConfig = {
         pathname:
           '/sites/default/files/2024-04/inteligencia%20artificial%20marketing%20%282%29.jpeg',
       },
+      {
+        protocol: 'https',
+        hostname: 'www.innovaitors.ai',
+        port: '',
+        pathname:
+          '/wp-content/uploads/2024/04/la-ia-en-los-procesos-de-la-arquitectura-g-1080x600.webp',
+      },
     ],
   },
 };

@@ -236,7 +236,7 @@ export const contentData: {
         ],
       },
       image: {
-        src: 'https://placehold.co/600x400.png',
+        src: 'https://www.innovaitors.ai/wp-content/uploads/2024/04/la-ia-en-los-procesos-de-la-arquitectura-g-1080x600.webp',
         alt: 'Future of Generative AI',
         'data-ai-hint': 'futuristic technology',
       },

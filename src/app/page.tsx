@@ -65,7 +65,7 @@ export default function HomePage() {
           id="presentation-pdf" 
           title="Presentación (Diapositivas)"
           description="Visualiza nuestras diapositivas detalladas sobre los Fundamentos de la IA Generativa."
-          pdfUrl="https://web.seducoahuila.gob.mx/biblioweb/upload/Dante%20Alighieri%20Divina%20comedia.pdf"
+          pdfUrl="/expo-canva.pdf"
         />
         
         <PdfSection 
