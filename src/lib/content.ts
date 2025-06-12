@@ -1,4 +1,54 @@
-export const contentData = {
+// Copio la definición de ContentSectionItem aquí para tipar localmente
+interface ContentBlock {
+  subtitle: string;
+  points: string[];
+}
+interface Model {
+  name: string;
+  image: { src: string; alt: string; 'data-ai-hint'?: string };
+  description: string;
+  'data-ai-hint'?: string;
+}
+interface Feature {
+  name: string;
+  points: string[];
+}
+interface Application {
+  name: string;
+  description: string;
+  'data-ai-hint'?: string;
+}
+interface Advantage {
+  name: string;
+  description: string;
+  'data-ai-hint'?: string;
+}
+interface Development {
+  title: string;
+  points: string[];
+}
+import * as LucideIcons from 'lucide-react';
+interface ContentSectionItem {
+  id: string;
+  title: string;
+  icon: keyof typeof LucideIcons;
+  paragraphs?: string[];
+  image?: { src: string; alt: string; 'data-ai-hint': string };
+  contentBlocks?: ContentBlock[];
+  models?: Model[];
+  features?: Feature[];
+  evolution?: string[];
+  howItWorks?: { title: string; points: string[] };
+  applications?: Application[];
+  advantages?: Advantage[];
+  developments?: Development;
+}
+
+export const contentData: {
+  mainTitle: string;
+  teamMembers: string[];
+  sections: ContentSectionItem[];
+} = {
   mainTitle: 'Fundamentos de la IA Generativa',
   teamMembers: [
     'Asencios Ocaña, Jefferson Anthony',
@@ -281,13 +331,13 @@ export const getFullPageTextForAI = (): string => {
     if (section.models) {
       summaryText += `Algunos modelos mencionados: ${section.models
         .slice(0, 2)
-        .map((m) => m.name)
+        .map((m: Model) => m.name)
         .join(', ')}.\n`;
     }
     if (section.applications) {
       summaryText += `Algunas aplicaciones: ${section.applications
         .slice(0, 2)
-        .map((a) => a.name)
+        .map((a: Application) => a.name)
         .join(', ')}.\n`;
     }
     summaryText += '\n';

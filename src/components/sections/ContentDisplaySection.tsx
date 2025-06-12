@@ -75,7 +75,11 @@ const renderGridItem = (
   >
     <div className="aspect-[16/10] w-full overflow-hidden rounded-t-xl">
       <Image
-        src={item.image?.src || 'https://placehold.co/400x250.png'}
+        src={
+          'image' in item && item.image?.src
+            ? item.image.src
+            : 'https://placehold.co/400x250.png'
+        }
         alt={item.name}
         width={400}
         height={250}
