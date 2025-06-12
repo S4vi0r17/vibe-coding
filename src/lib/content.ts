@@ -15,6 +15,7 @@ interface Feature {
 }
 interface Application {
   name: string;
+  image: { src: string; alt: string; 'data-ai-hint'?: string };
   description: string;
   'data-ai-hint'?: string;
 }
@@ -153,65 +154,6 @@ export const contentData: {
       ],
     },
     {
-      id: 'transformers',
-      title: 'Los Transformers: La Revolución de la IA',
-      icon: 'BrainCircuit',
-      paragraphs: [
-        "Introducidos por Google en 2017 ('Attention Is All You Need'), los Transformers revolucionaron el Procesamiento del Lenguaje Natural (PLN). Su innovador mecanismo de atención les permite sopesar la importancia de diferentes partes de la secuencia de entrada de forma simultánea, capturando relaciones complejas en el texto.",
-      ],
-      features: [
-        {
-          name: 'Mecanismo de Atención:',
-          points: [
-            'Analiza todas las palabras a la vez, no secuencialmente.',
-            'Identifica relevancia y contexto entre palabras.',
-            'Captura dependencias a larga distancia eficazmente.',
-          ],
-        },
-        {
-          name: 'Paralelización:',
-          points: [
-            'Procesa secuencias de manera más eficiente.',
-            'Permite el entrenamiento con datasets masivos.',
-            'Reduce significativamente los tiempos de entrenamiento.',
-          ],
-        },
-      ],
-      image: {
-        src: 'https://placehold.co/600x400.png',
-        alt: 'Transformer architecture illustration',
-        'data-ai-hint': 'transformer model',
-      },
-    },
-    {
-      id: 'gpt',
-      title: 'GPT: El Poder Generativo Pre-entrenado',
-      icon: 'Zap',
-      paragraphs: [
-        'GPT (Generative Pre-trained Transformer), desarrollado por OpenAI, es una familia de modelos de lenguaje que aprovecha la arquitectura Transformer. Son pre-entrenados en vastas cantidades de texto para generar texto coherente y contextualmente relevante, prediciendo la siguiente palabra en una secuencia.',
-      ],
-      evolution: [
-        'GPT-1 (2018): 117 millones de parámetros, demostró el potencial del pre-entrenamiento.',
-        'GPT-2 (2019): 1.5 mil millones de parámetros, mayor capacidad de generación.',
-        "GPT-3 (2020): 175 mil millones de parámetros, habilidades sorprendentes de 'pocos ejemplos' (few-shot learning).",
-        'GPT-4 (y sucesores): Multimodalidad (texto, imágenes), razonamiento mejorado y mayor escala.',
-      ],
-      howItWorks: {
-        title: 'Funcionamiento Clave de GPT:',
-        points: [
-          'Pre-entrenamiento masivo con datos de internet para aprender patrones del lenguaje.',
-          'Arquitectura Transformer para procesar y entender el contexto.',
-          'Predicción secuencial de la siguiente palabra (o token).',
-          'Ajuste fino (fine-tuning) opcional para tareas específicas.',
-        ],
-      },
-      image: {
-        src: 'https://placehold.co/600x400.png',
-        alt: 'GPT model concept',
-        'data-ai-hint': 'gpt logo',
-      },
-    },
-    {
       id: 'applications',
       title: 'Aplicaciones Revolucionarias',
       icon: 'AppWindow',
@@ -221,67 +163,58 @@ export const contentData: {
       applications: [
         {
           name: 'Creación de Contenido',
+          image: {
+            src: 'https://www.segmentamarketing.com/wp-content/uploads/2022/04/Ideas-para-crear-contenido-con-inteligencia_artificial-1024x576.png',
+            alt: 'Content creation',
+            'data-ai-hint': 'content creation',
+          },
           description:
             'Redacción automática de artículos, guiones para videos, slogans publicitarios personalizados.',
           'data-ai-hint': 'writing content',
         },
         {
           name: 'Programación Asistida',
+          image: {
+            src: 'https://aps.autodesk.com/sites/default/files/styles/twitter_card/public/2024-10/Screenshot%202024-10-03%20at%2015.34.40.png?itok=h0qq0YmD',
+            alt: 'Coding assistance',
+            'data-ai-hint': 'coding assistance',
+          },
           description:
             'Generación de fragmentos de código, depuración de errores, redacción de documentación técnica.',
           'data-ai-hint': 'coding software',
         },
         {
           name: 'Educación Personalizada',
+          image: {
+            src: 'https://d8285fmxt3duy.cloudfront.net/public/articulos/img/2024/7-apps-IA-educacion_3.jpg',
+            alt: 'Adaptive learning',
+            'data-ai-hint': 'adaptive learning',
+          },
           description:
             'Tutores virtuales adaptativos, creación de material educativo a medida, simulaciones.',
           'data-ai-hint': 'online learning',
         },
         {
           name: 'Creatividad y Arte Digital',
+          image: {
+            src: 'https://all-images.ai/wp-content/uploads/2023/10/l26rsquo3Bimpact-de-l26rsquo3Bintelligence-artificielle-sur-l26rsquo3Bart-numerique.jpg',
+            alt: 'Digital art creation',
+            'data-ai-hint': 'digital art creation',
+          },
           description:
             'Composición musical original, generación de arte visual único, escritura de poesía y ficción.',
           'data-ai-hint': 'digital art',
         },
         {
           name: 'Productividad Empresarial',
+          image: {
+            src: 'https://www.esic.edu/sites/default/files/2024-04/inteligencia%20artificial%20marketing%20%282%29.jpeg',
+            alt: 'Business productivity tools',
+            'data-ai-hint': 'business productivity',
+          },
           description:
             'Automatización de atención al cliente, resumen de documentos extensos, generación de informes.',
           'data-ai-hint': 'business office',
-        },
-      ],
-    },
-    {
-      id: 'advantages',
-      title: 'Ventajas Competitivas de Transformers',
-      icon: 'Award',
-      paragraphs: [
-        'Los Transformers no solo mejoraron el rendimiento en tareas de PLN, sino que ofrecen ventajas significativas que los han posicionado como la arquitectura dominante en la IA generativa actual.',
-      ],
-      advantages: [
-        {
-          name: 'Escalabilidad Efectiva',
-          description:
-            'Su rendimiento mejora predeciblemente con más datos y mayor capacidad de cómputo (leyes de escala).',
-          'data-ai-hint': 'scalability chart',
-        },
-        {
-          name: 'Versatilidad Multimodal',
-          description:
-            'No solo texto; manejan imágenes, audio, video y código, permitiendo modelos unificados.',
-          'data-ai-hint': 'versatile tools',
-        },
-        {
-          name: 'Transfer Learning Superior',
-          description:
-            'El conocimiento pre-entrenado se adapta a nuevas tareas con relativamente pocos datos adicionales.',
-          'data-ai-hint': 'knowledge transfer',
-        },
-        {
-          name: 'Comprensión Contextual Profunda',
-          description:
-            'El mecanismo de auto-atención permite entender el contexto global de la información, no solo fragmentos aislados.',
-          'data-ai-hint': 'context understanding',
         },
       ],
     },

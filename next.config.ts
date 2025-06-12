@@ -58,6 +58,40 @@ const nextConfig: NextConfig = {
         port: '',
         pathname: '/r1vGhYM/67ac700c-ac6e-46fe-b9ef-e63e8845dbb3.png',
       },
+      {
+        protocol: 'https',
+        hostname: 'www.segmentamarketing.com',
+        port: '',
+        pathname:
+          '/wp-content/uploads/2022/04/Ideas-para-crear-contenido-con-inteligencia_artificial-1024x576.png',
+      },
+      {
+        protocol: 'https',
+        hostname: 'aps.autodesk.com',
+        port: '',
+        pathname:
+          '/sites/default/files/styles/twitter_card/public/2024-10/Screenshot%202024-10-03%20at%2015.34.40.png',
+      },
+      {
+        protocol: 'https',
+        hostname: 'd8285fmxt3duy.cloudfront.net',
+        port: '',
+        pathname: '/public/articulos/img/2024/7-apps-IA-educacion_3.jpg',
+      },
+      {
+        protocol: 'https',
+        hostname: 'all-images.ai',
+        port: '',
+        pathname:
+          '/wp-content/uploads/2023/10/l26rsquo3Bimpact-de-l26rsquo3Bintelligence-artificielle-sur-l26rsquo3Bart-numerique.jpg',
+      },
+      {
+        protocol: 'https',
+        hostname: 'www.esic.edu',
+        port: '',
+        pathname:
+          '/sites/default/files/2024-04/inteligencia%20artificial%20marketing%20%282%29.jpeg',
+      },
     ],
   },
 };
