@@ -32,7 +32,7 @@ export default function HomePage() {
                     </a>
                   </Button>
                   <Button asChild variant="outline" size="lg" className="font-headline text-lg px-8 py-3 border-primary/50 hover:bg-primary/10">
-                    <a href="https://github.com" target="_blank" rel="noopener noreferrer">
+                    <a href="https://github.com/jefferson30ao/LegalGenAI" target="_blank" rel="noopener noreferrer">
                       GitHub <Github className="ml-2 h-5 w-5" />
                     </a>
                   </Button>
@@ -65,7 +65,7 @@ export default function HomePage() {
           id="presentation-pdf" 
           title="Presentación (Diapositivas)"
           description="Visualiza nuestras diapositivas detalladas sobre los Fundamentos de la IA Generativa."
-          pdfUrl="/expo-canva.pdf"
+          // pdfUrl="/expo-canva.pdf"
         />
         
         <PdfSection 
