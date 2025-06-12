@@ -1,3 +1,4 @@
+
 "use client";
 
 import { useState } from 'react';
@@ -9,7 +10,6 @@ import SectionWrapper from '@/components/sections/SectionWrapper';
 import { askQuestion, type AskQuestionInput, type AskQuestionOutput } from '@/ai/flows/summarize-content-qa';
 import { getFullPageTextForAI } from '@/lib/content';
 import { useToast } from "@/hooks/use-toast";
-
 
 export default function AiQuerySection() {
   const [question, setQuestion] = useState('');
@@ -59,17 +59,17 @@ export default function AiQuerySection() {
 
   return (
     <SectionWrapper id="ai-query" title="Pregunta a la IA" Icon={MessageCircleQuestion} className="bg-background">
-      <Card className="max-w-3xl mx-auto shadow-lg">
-        <CardHeader>
-          <CardTitle className="text-center text-2xl font-headline text-primary flex items-center justify-center">
-            <Sparkles className="h-7 w-7 mr-2 text-accent" />
+      <Card className="max-w-3xl mx-auto shadow-xl border-none bg-card/80 backdrop-blur-sm">
+        <CardHeader className="pb-4">
+          <CardTitle className="text-center text-2xl md:text-3xl font-headline text-primary flex items-center justify-center">
+            <Sparkles className="h-7 w-7 md:h-8 md:w-8 mr-2 text-accent" />
             Consulta Sobre el Contenido
           </CardTitle>
-          <CardDescription className="text-center font-body text-lg text-foreground/80">
-            ¿Tienes alguna duda sobre la IA Generativa? Pregunta aquí y nuestra IA te ayudará a resumir la información de esta página.
+          <CardDescription className="text-center font-body text-md md:text-lg text-foreground/70 pt-1">
+            ¿Tienes dudas sobre la IA Generativa? Pregunta y nuestra IA resumirá la información de esta página.
           </CardDescription>
         </CardHeader>
-        <CardContent>
+        <CardContent className="p-6 md:p-8">
           <form onSubmit={handleSubmit} className="space-y-6">
             <div>
               <Textarea
@@ -77,11 +77,11 @@ export default function AiQuerySection() {
                 value={question}
                 onChange={(e) => setQuestion(e.target.value)}
                 rows={4}
-                className="font-body text-base"
+                className="font-body text-base rounded-lg shadow-sm focus:ring-primary/50"
                 disabled={isLoading}
               />
             </div>
-            <Button type="submit" className="w-full font-headline text-lg" disabled={isLoading}>
+            <Button type="submit" className="w-full font-headline text-lg py-3" disabled={isLoading}>
               {isLoading ? (
                 <>
                   <Loader2 className="mr-2 h-5 w-5 animate-spin" />
@@ -96,12 +96,12 @@ export default function AiQuerySection() {
             </Button>
           </form>
           {answer && (
-            <Card className="mt-8 bg-secondary/50 p-6 rounded-lg shadow-inner">
-              <CardHeader className="p-0 mb-2">
+            <Card className="mt-8 bg-secondary/70 p-6 rounded-xl shadow-inner border-primary/20">
+              <CardHeader className="p-0 mb-3">
                 <CardTitle className="font-headline text-xl text-primary">Respuesta de la IA:</CardTitle>
               </CardHeader>
               <CardContent className="p-0">
-                <p className="font-body text-foreground/90 whitespace-pre-wrap">{answer}</p>
+                <p className="font-body text-foreground/90 whitespace-pre-wrap text-md leading-relaxed">{answer}</p>
               </CardContent>
             </Card>
           )}

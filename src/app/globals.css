@@ -1,3 +1,4 @@
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -28,7 +29,7 @@
     --destructive: 0 84.2% 60.2%;
     --destructive-foreground: 0 0% 98%;
 
-    --border: 170 20% 88%;
+    --border: 170 20% 80%; /* Slightly darker border for more definition */
     --input: 170 20% 92%;
     --ring: 175 35% 40%; /* Primary color for rings */
 
@@ -37,11 +38,11 @@
     --chart-3: 197 37% 24%;
     --chart-4: 43 74% 66%;
     --chart-5: 27 87% 67%;
-    --radius: 0.5rem;
+    --radius: 0.75rem; /* Increased border radius for a softer, modern look */
 
-    /* Sidebar colors (may not be extensively used but kept for consistency) */
-    --sidebar-background: 180 20% 12%; /* Darker teal for sidebar */
-    --sidebar-foreground: 170 30% 90%; /* Light text for sidebar */
+    /* Sidebar colors */
+    --sidebar-background: 180 20% 12%; 
+    --sidebar-foreground: 170 30% 90%; 
     --sidebar-primary: 175 35% 40%;
     --sidebar-primary-foreground: 0 0% 100%;
     --sidebar-accent: 90 40% 75%;
@@ -75,7 +76,7 @@
     --destructive: 0 62.8% 30.6%;
     --destructive-foreground: 0 0% 98%;
 
-    --border: 180 20% 25%;
+    --border: 180 20% 22%; /* Darker border for dark mode */
     --input: 180 20% 22%;
     --ring: 175 40% 50%; 
 
