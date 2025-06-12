@@ -43,7 +43,7 @@ export default function HomePage() {
               <div className="mt-8 md:mt-0">
                 <div className="rounded-xl shadow-2xl overflow-hidden bg-accent/50 p-3 md:p-4 transform transition-all duration-500 hover:scale-105">
                   <Image
-                    src="https://placehold.co/600x450.png" 
+                    src="https://i.ibb.co/r1vGhYM/67ac700c-ac6e-46fe-b9ef-e63e8845dbb3.png" 
                     alt="Caja de herramientas de IA"
                     width={600}
                     height={450}
