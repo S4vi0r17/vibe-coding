@@ -65,15 +65,15 @@ export default function HomePage() {
           id="presentation-pdf" 
           title="Presentación (Diapositivas)"
           description="Visualiza nuestras diapositivas detalladas sobre los Fundamentos de la IA Generativa."
-          // pdfUrl="/expo-canva.pdf"
+          pdfUrl="/expo-canva.pdf"
         />
         
-        <PdfSection 
+        {/* <PdfSection 
           id="report-pdf" 
           title="Informe Detallado"
           description="Consulta nuestro informe completo que profundiza en los temas tratados."
           // pdfUrl="/path/to/your/report.pdf"
-        />
+        /> */}
         
         <AiQuerySection />
       </main>
