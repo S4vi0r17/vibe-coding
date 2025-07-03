@@ -71,14 +71,14 @@ const renderGridItem = (
 ) => (
   <Card
     key={`${itemType}-${sectionId}-${item.name.replace(/\s+/g, '-')}`}
-    className="flex flex-col overflow-hidden shadow-lg rounded-xl transition-all duration-300 hover:shadow-2xl hover:scale-[1.02] bg-card"
+    className="group flex flex-col overflow-hidden shadow-soft rounded-xl transition-all duration-300 hover:shadow-strong hover:-translate-y-1 bg-card border-border/50 hover:border-primary/30"
   >
-    <div className="aspect-[16/10] w-full overflow-hidden rounded-t-xl">
+    <div className="aspect-[16/10] w-full overflow-hidden">
       <Image
         src={
           'image' in item && item.image?.src
             ? item.image.src
-            : 'https://placehold.co/400x250.png'
+            : 'https://placehold.co/400x250/f1f5f9/64748b?text=Imagen+no+disponible'
         }
         alt={item.name}
         width={400}
@@ -89,15 +89,16 @@ const renderGridItem = (
           item.name.toLowerCase().split(' ').slice(0, 2).join(' ') ||
           'concept item'
         }
+        loading="lazy"
       />
     </div>
-    <CardHeader className="pb-3 pt-5">
-      <CardTitle className="font-headline text-xl text-primary">
+    <CardHeader className="pb-3 pt-6">
+      <CardTitle className="text-xl font-semibold text-foreground group-hover:text-primary transition-colors duration-300 line-clamp-2">
         {item.name}
       </CardTitle>
     </CardHeader>
-    <CardContent className="flex-grow pt-0">
-      <p className="text-foreground/80 font-body text-sm leading-relaxed">
+    <CardContent className="flex-grow pt-0 pb-6">
+      <p className="text-muted-foreground text-sm leading-relaxed line-clamp-3">
         {item.description}
       </p>
     </CardContent>
@@ -117,87 +118,102 @@ export default function ContentDisplaySection({
           section.advantages
         );
         const alternateBg =
-          index % 2 === 0 ? 'bg-background' : 'bg-secondary/60';
+          index % 2 === 0 ? 'bg-background' : 'bg-muted/30';
 
         const textContentElements = (
           <>
             {section.contentBlocks && (
-              <div className="grid md:grid-cols-2 gap-6 mt-6">
+              <div className="grid md:grid-cols-2 gap-6 mt-8">
                 {section.contentBlocks.map((cb, i) => (
-                  <div
+                  <Card
                     key={`cb-${section.id}-${i}`}
-                    className="p-6 border rounded-xl bg-card/80 shadow-lg backdrop-blur-sm"
+                    className="p-6 shadow-soft hover:shadow-medium transition-all duration-300 border-border/50"
                   >
-                    <h4 className="font-headline text-xl font-semibold text-primary mb-3">
+                    <h4 className="text-xl font-semibold text-foreground mb-4">
                       {cb.subtitle}
                     </h4>
-                    <ul className="list-disc list-inside space-y-2 text-foreground/80 font-body text-sm">
+                    <ul className="space-y-3 text-muted-foreground text-sm">
                       {cb.points.map((pt, j) => (
-                        <li key={`cb-pt-${section.id}-${i}-${j}`}>{pt}</li>
+                        <li key={`cb-pt-${section.id}-${i}-${j}`} className="flex items-start gap-3">
+                          <span className="h-1.5 w-1.5 bg-primary rounded-full mt-2 flex-shrink-0" />
+                          <span className="leading-relaxed">{pt}</span>
+                        </li>
                       ))}
                     </ul>
-                  </div>
+                  </Card>
                 ))}
               </div>
             )}
 
             {section.features && (
-              <div className="grid md:grid-cols-2 gap-6 mt-6">
+              <div className="grid md:grid-cols-2 gap-6 mt-8">
                 {section.features.map((feat, i) => (
-                  <div
+                  <Card
                     key={`feat-${section.id}-${i}`}
-                    className="p-6 border rounded-xl bg-card/80 shadow-lg backdrop-blur-sm"
+                    className="p-6 shadow-soft hover:shadow-medium transition-all duration-300 border-border/50"
                   >
-                    <h4 className="font-headline text-xl font-semibold text-primary mb-3">
+                    <h4 className="text-xl font-semibold text-foreground mb-4">
                       {feat.name}
                     </h4>
-                    <ul className="list-disc list-inside space-y-2 text-foreground/80 font-body text-sm">
+                    <ul className="space-y-3 text-muted-foreground text-sm">
                       {feat.points.map((pt, j) => (
-                        <li key={`feat-pt-${section.id}-${i}-${j}`}>{pt}</li>
+                        <li key={`feat-pt-${section.id}-${i}-${j}`} className="flex items-start gap-3">
+                          <span className="h-1.5 w-1.5 bg-primary rounded-full mt-2 flex-shrink-0" />
+                          <span className="leading-relaxed">{pt}</span>
+                        </li>
                       ))}
                     </ul>
-                  </div>
+                  </Card>
                 ))}
               </div>
             )}
 
             {section.evolution && (
-              <div className="mt-6 p-6 border rounded-xl bg-card/80 shadow-lg backdrop-blur-sm">
-                <h4 className="font-headline text-xl font-semibold text-primary mb-3">
+              <Card className="mt-8 p-6 shadow-soft border-border/50">
+                <h4 className="text-xl font-semibold text-foreground mb-4">
                   Evolución de la Familia GPT:
                 </h4>
-                <ul className="list-disc list-inside space-y-2 text-foreground/80 font-body text-sm">
+                <ul className="space-y-3 text-muted-foreground text-sm">
                   {section.evolution.map((item, i) => (
-                    <li key={`evo-${section.id}-${i}`}>{item}</li>
+                    <li key={`evo-${section.id}-${i}`} className="flex items-start gap-3">
+                      <span className="h-1.5 w-1.5 bg-primary rounded-full mt-2 flex-shrink-0" />
+                      <span className="leading-relaxed">{item}</span>
+                    </li>
                   ))}
                 </ul>
-              </div>
+              </Card>
             )}
 
             {section.howItWorks && (
-              <div className="mt-6 p-6 border rounded-xl bg-card/80 shadow-lg backdrop-blur-sm">
-                <h4 className="font-headline text-xl font-semibold text-primary mb-3">
+              <Card className="mt-8 p-6 shadow-soft border-border/50">
+                <h4 className="text-xl font-semibold text-foreground mb-4">
                   {section.howItWorks.title}
                 </h4>
-                <ul className="list-disc list-inside space-y-2 text-foreground/80 font-body text-sm">
+                <ul className="space-y-3 text-muted-foreground text-sm">
                   {section.howItWorks.points.map((pt, i) => (
-                    <li key={`hiw-pt-${section.id}-${i}`}>{pt}</li>
+                    <li key={`hiw-pt-${section.id}-${i}`} className="flex items-start gap-3">
+                      <span className="h-1.5 w-1.5 bg-primary rounded-full mt-2 flex-shrink-0" />
+                      <span className="leading-relaxed">{pt}</span>
+                    </li>
                   ))}
                 </ul>
-              </div>
+              </Card>
             )}
 
             {section.developments && (
-              <div className="mt-6 p-6 border rounded-xl bg-card/80 shadow-lg backdrop-blur-sm">
-                <h4 className="font-headline text-xl font-semibold text-primary mb-3">
+              <Card className="mt-8 p-6 shadow-soft border-border/50">
+                <h4 className="text-xl font-semibold text-foreground mb-4">
                   {section.developments.title}
                 </h4>
-                <ul className="list-disc list-inside space-y-2 text-foreground/80 font-body text-sm">
+                <ul className="space-y-3 text-muted-foreground text-sm">
                   {section.developments.points.map((pt, i) => (
-                    <li key={`dev-pt-${section.id}-${i}`}>{pt}</li>
+                    <li key={`dev-pt-${section.id}-${i}`} className="flex items-start gap-3">
+                      <span className="h-1.5 w-1.5 bg-primary rounded-full mt-2 flex-shrink-0" />
+                      <span className="leading-relaxed">{pt}</span>
+                    </li>
                   ))}
                 </ul>
-              </div>
+              </Card>
             )}
           </>
         );
@@ -212,19 +228,19 @@ export default function ContentDisplaySection({
           >
             {section.paragraphs && (
               <div
-                className={`max-w-3xl mx-auto text-center ${
-                  isGridSection ? 'mb-10' : 'mb-0'
+                className={`max-w-4xl mx-auto text-center ${
+                  isGridSection ? 'mb-12' : 'mb-8'
                 }`}
               >
                 {section.paragraphs.map((p, i) => (
                   <p
                     key={`intro-p-${section.id}-${i}`}
-                    className={`text-md md:text-lg text-foreground/80 font-body leading-relaxed ${
+                    className={`text-lg leading-relaxed text-muted-foreground ${
                       isGridSection &&
                       section.paragraphs &&
                       section.paragraphs.length === 1
                         ? ''
-                        : 'mb-4'
+                        : 'mb-6'
                     }`}
                   >
                     {p}
@@ -243,7 +259,7 @@ export default function ContentDisplaySection({
                   ? 'application'
                   : 'advantage';
                 return (
-                  <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8 max-w-6xl mx-auto mt-8">
+                  <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8 max-w-7xl mx-auto">
                     {items?.map((item) =>
                       renderGridItem(
                         item as Model | Application | Advantage,
@@ -255,28 +271,29 @@ export default function ContentDisplaySection({
                 );
               } else if (section.image) {
                 return (
-                  <Card className="max-w-5xl mx-auto shadow-xl overflow-hidden transition-all duration-300 hover:shadow-2xl mt-8 bg-card/80 backdrop-blur-sm border-none">
-                    <CardContent className="p-0 md:p-0">
-                      <div className="flex flex-col md:flex-row gap-0 items-stretch">
-                        <div className="w-full md:w-2/5 flex-shrink-0 relative group">
-                          <div className="rounded-t-xl md:rounded-l-xl md:rounded-tr-none shadow-lg overflow-hidden bg-accent/30 h-full">
+                  <Card className="max-w-6xl mx-auto shadow-strong overflow-hidden transition-all duration-300 hover:shadow-strong border-border/50">
+                    <CardContent className="p-0">
+                      <div className="flex flex-col lg:flex-row">
+                        <div className="w-full lg:w-2/5 relative group overflow-hidden">
+                          <div className="aspect-[4/3] lg:aspect-auto lg:h-full relative bg-gradient-to-br from-primary/5 to-accent/5">
                             <Image
                               src={section.image.src}
                               alt={section.image.alt}
                               width={600}
                               height={450}
-                              className="rounded-t-xl md:rounded-l-xl md:rounded-tr-none object-cover w-full h-full transition-transform duration-500 group-hover:scale-105"
+                              className="object-cover w-full h-full transition-transform duration-500 group-hover:scale-105"
                               data-ai-hint={section.image['data-ai-hint']}
+                              loading="lazy"
                             />
                           </div>
                         </div>
-                        <div className="w-full md:w-3/5 p-6 md:p-8 space-y-5">
+                        <div className="w-full lg:w-3/5 p-6 lg:p-10 space-y-6">
                           {section.paragraphs &&
                             !isGridSection &&
                             section.paragraphs.map((p, i) => (
                               <p
                                 key={`para-img-${section.id}-${i}`}
-                                className="text-md leading-relaxed text-foreground/90 font-body"
+                                className="text-lg leading-relaxed text-muted-foreground"
                               >
                                 {p}
                               </p>
@@ -290,14 +307,14 @@ export default function ContentDisplaySection({
               } else {
                 // For sections with only text content (no grid, no image)
                 return (
-                  <Card className="max-w-4xl mx-auto shadow-xl mt-8 bg-card/80 backdrop-blur-sm border-none">
-                    <CardContent className="p-6 md:p-10 text-md font-body space-y-5">
+                  <Card className="max-w-5xl mx-auto shadow-soft border-border/50">
+                    <CardContent className="p-8 lg:p-12 space-y-6">
                       {section.paragraphs &&
                         !isGridSection &&
                         section.paragraphs.map((p, i) => (
                           <p
                             key={`para-solo-${section.id}-${i}`}
-                            className="leading-relaxed text-foreground/90"
+                            className="text-lg leading-relaxed text-muted-foreground"
                           >
                             {p}
                           </p>

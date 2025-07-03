@@ -47,15 +47,27 @@ interface ContentSectionItem {
 
 export const contentData: {
   mainTitle: string;
-  teamMembers: string[];
+  teamMembers: { name: string; image: string }[];
   sections: ContentSectionItem[];
 } = {
   mainTitle: 'Fundamentos de la IA Generativa',
   teamMembers: [
-    'Asencios Ocaña, Jefferson Anthony',
-    'Villanueba Inés, José Antonio',
-    'Benites Pardavé, Eder Gustavo',
-    'Uribe Mejía, Guillermo César',
+    {
+      name: 'Asencios Ocaña, Jefferson Anthony',
+      image: '/asencios.png'
+    },
+    {
+      name: 'Villanueva Inés, José Antonio',
+      image: '/villanueva.png'
+    },
+    {
+      name: 'Benites Pardavé, Eder Gustavo',
+      image: '/benites.png'
+    },
+    {
+      name: 'Uribe Mejía, Guillermo César',
+      image: '/uribe.png'
+    },
   ],
   sections: [
     {
@@ -246,7 +258,7 @@ export const contentData: {
 
 export const getFullPageTextForAI = (): string => {
   let summaryText = `Resumen del contenido de la página: ${contentData.mainTitle}\n\n`;
-  summaryText += `El equipo que presenta este contenido está compuesto por: ${contentData.teamMembers.join(
+  summaryText += `El equipo que presenta este contenido está compuesto por: ${contentData.teamMembers.map(member => member.name).join(
     ', '
   )}.\n\n`;
 

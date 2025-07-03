@@ -7,50 +7,119 @@ import PdfSection from '@/components/sections/PdfSection';
 import AiQuerySection from '@/components/sections/AiQuerySection';
 import { contentData } from '@/lib/content';
 import { Button } from '@/components/ui/button';
-import { ArrowRight, Github } from 'lucide-react';
+import { ArrowRight, Github, Sparkles, BookOpen } from 'lucide-react';
 
 export default function HomePage() {
   return (
-    <div className="flex flex-col min-h-screen bg-background">
+    <div className="flex flex-col min-h-screen">
       <Header />
       <main className="flex-grow">
-        <section id="hero" className="py-20 md:py-32 bg-background">
-          <div className="container mx-auto px-4">
-            <div className="grid md:grid-cols-2 items-center gap-12 md:gap-16">
-              {/* Left Column */}
-              <div className="text-center md:text-left">
-                <h1 className="text-4xl sm:text-5xl md:text-6xl font-bold text-foreground font-headline mb-6 leading-tight">
-                  {contentData.mainTitle}
-                </h1>
-                <p className="text-lg md:text-xl text-foreground/80 font-body mb-10 max-w-xl mx-auto md:mx-0">
-                  Una exploración profunda de los conceptos, modelos y el impacto revolucionario de la Inteligencia Artificial Generativa.
-                </p>
-                <div className="flex flex-col sm:flex-row gap-4 justify-center md:justify-start">
-                  <Button asChild size="lg" className="font-headline text-lg px-8 py-3">
-                    <a href="#intro">
-                      Leer Más <ArrowRight className="ml-2 h-5 w-5" />
+        {/* Hero Section */}
+        <section id="hero" className="relative overflow-hidden py-20 sm:py-24 lg:py-32">
+          {/* Background gradient */}
+          <div className="absolute inset-0 bg-gradient-to-br from-primary/5 via-background to-accent/5" />
+          
+          {/* Grid pattern overlay */}
+          <div className="absolute inset-0 bg-[linear-gradient(to_right,#80808012_1px,transparent_1px),linear-gradient(to_bottom,#80808012_1px,transparent_1px)] bg-[size:24px_24px]" />
+          
+          <div className="container relative mx-auto px-4 sm:px-6 lg:px-8">
+            <div className="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center">
+              {/* Left Column - Content */}
+              <div className="text-center lg:text-left space-y-8">
+                {/* Badge */}
+                <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-primary/10 text-primary text-sm font-medium">
+                  <Sparkles className="h-4 w-4" />
+                  Presentación Académica
+                </div>
+
+                {/* Main heading */}
+                <div className="space-y-4">
+                  <h1 className="text-4xl sm:text-5xl lg:text-6xl xl:text-7xl font-bold tracking-tight">
+                    <span className="block text-foreground">Fundamentos de la</span>
+                    <span className="block gradient-text">IA Generativa</span>
+                  </h1>
+                  <p className="text-lg sm:text-xl lg:text-2xl text-muted-foreground max-w-2xl mx-auto lg:mx-0 leading-relaxed">
+                    Una exploración profunda de los conceptos, modelos y el impacto revolucionario de la Inteligencia Artificial Generativa.
+                  </p>
+                </div>
+
+                {/* CTA Buttons */}
+                <div className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">
+                  <Button 
+                    asChild 
+                    size="lg" 
+                    className="text-base px-8 py-6 h-auto shadow-medium hover:shadow-strong transition-all duration-300"
+                  >
+                    <a href="#intro" className="inline-flex items-center gap-2">
+                      <BookOpen className="h-5 w-5" />
+                      Explorar Contenido
+                      <ArrowRight className="h-5 w-5" />
                     </a>
                   </Button>
-                  <Button asChild variant="outline" size="lg" className="font-headline text-lg px-8 py-3 border-primary/50 hover:bg-primary/10">
-                    <a href="https://github.com/jefferson30ao/LegalGenAI" target="_blank" rel="noopener noreferrer">
-                      GitHub <Github className="ml-2 h-5 w-5" />
+                  <Button 
+                    asChild 
+                    variant="outline" 
+                    size="lg" 
+                    className="text-base px-8 py-6 h-auto border-2 hover:bg-primary/5 transition-all duration-300"
+                  >
+                    <a 
+                      href="https://github.com/jefferson30ao/LegalGenAI" 
+                      target="_blank" 
+                      rel="noopener noreferrer"
+                      className="inline-flex items-center gap-2"
+                    >
+                      <Github className="h-5 w-5" />
+                      Ver en GitHub
                     </a>
                   </Button>
                 </div>
+
+                {/* Stats or features */}
+                <div className="grid grid-cols-2 sm:grid-cols-3 gap-6 pt-8 border-t border-border/50">
+                  <div className="text-center lg:text-left">
+                    <div className="text-2xl font-bold text-foreground">4</div>
+                    <div className="text-sm text-muted-foreground">Integrantes</div>
+                  </div>
+                  <div className="text-center lg:text-left">
+                    <div className="text-2xl font-bold text-foreground">7+</div>
+                    <div className="text-sm text-muted-foreground">Secciones</div>
+                  </div>
+                  <div className="text-center lg:text-left">
+                    <div className="text-2xl font-bold text-foreground">IA</div>
+                    <div className="text-sm text-muted-foreground">Consultas</div>
+                  </div>
+                </div>
               </div>
 
-              {/* Right Column */}
-              <div className="mt-8 md:mt-0">
-                <div className="rounded-xl shadow-2xl overflow-hidden bg-accent/50 p-3 md:p-4 transform transition-all duration-500 hover:scale-105">
-                  <Image
-                    src="https://i.ibb.co/r1vGhYM/67ac700c-ac6e-46fe-b9ef-e63e8845dbb3.png" 
-                    alt="Caja de herramientas de IA"
-                    width={600}
-                    height={450}
-                    className="rounded-lg object-cover w-full h-full"
-                    data-ai-hint="orange toolbox"
-                    priority
-                  />
+              {/* Right Column - Image */}
+              <div className="relative">
+                <div className="relative">
+                  {/* Decorative elements */}
+                  <div className="absolute -top-4 -left-4 h-24 w-24 rounded-full bg-primary/20 blur-xl" />
+                  <div className="absolute -bottom-8 -right-8 h-32 w-32 rounded-full bg-accent/20 blur-xl" />
+                  
+                  {/* Main image container */}
+                  <div className="relative overflow-hidden rounded-2xl bg-gradient-to-br from-primary/10 to-accent/10 p-4 shadow-strong">
+                    <div className="aspect-[4/3] overflow-hidden rounded-xl bg-white/50 backdrop-blur-sm">
+                      <Image
+                        src="https://i.ibb.co/r1vGhYM/67ac700c-ac6e-46fe-b9ef-e63e8845dbb3.png"
+                        alt="Caja de herramientas de IA representando los fundamentos de la inteligencia artificial generativa"
+                        width={600}
+                        height={450}
+                        className="h-full w-full object-cover transition-transform duration-700 hover:scale-105"
+                        data-ai-hint="orange toolbox representing AI tools"
+                        priority
+                      />
+                    </div>
+                  </div>
+                  
+                  {/* Floating card */}
+                  <div className="absolute -bottom-6 -left-6 rounded-xl bg-card border border-border shadow-strong p-4 backdrop-blur-sm">
+                    <div className="flex items-center gap-3">
+                      <div className="h-3 w-3 rounded-full bg-green-500 animate-pulse" />
+                      <span className="text-sm font-medium text-card-foreground">Modelos Activos</span>
+                    </div>
+                  </div>
                 </div>
               </div>
             </div>
@@ -58,7 +127,6 @@ export default function HomePage() {
         </section>
         
         <TeamSection members={contentData.teamMembers} />
-        
         <ContentDisplaySection sections={contentData.sections} />
         
         <PdfSection 
@@ -68,16 +136,17 @@ export default function HomePage() {
           pdfUrl="/expo-canva.pdf"
         />
         
-        {/* <PdfSection 
-          id="report-pdf" 
-          title="Informe Detallado"
-          description="Consulta nuestro informe completo que profundiza en los temas tratados."
-          // pdfUrl="/path/to/your/report.pdf"
-        /> */}
-        
         <AiQuerySection />
       </main>
-      {/* Footer can be added here if needed in the future */}
+      
+      {/* Footer */}
+      <footer className="border-t border-border bg-muted/30">
+        <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-8">
+          <div className="text-center text-sm text-muted-foreground">
+            <p>&copy; 2025 Grupo 1 - Fundamentos de IA Generativa. Proyecto académico.</p>
+          </div>
+        </div>
+      </footer>
     </div>
   );
 }
