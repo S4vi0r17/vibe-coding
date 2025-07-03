@@ -49,31 +49,31 @@ export default function TeamSection({ members }: TeamSectionProps) {
               <div className="absolute inset-0 bg-gradient-to-br from-primary/5 to-accent/5 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
               
               <CardHeader className="text-center pb-4 relative z-10">
-                <div className="flex justify-center mb-4">
+                <div className="flex justify-center mb-4 select-none">
                   <div className="relative">
-                    <Avatar className="h-20 w-20 ring-4 ring-primary/20 transition-all duration-300 group-hover:ring-primary/40">
+                    <Avatar className="h-20 w-20 ring-4 ring-primary/20 transition-all duration-300 group-hover:ring-primary/40 group-hover:scale-105">
                       <AvatarImage 
                         src={member.image} 
                         alt={`Foto de ${member.name}`}
                         className="object-cover"
                       />
-                      <AvatarFallback className="bg-primary/10 text-primary font-semibold text-lg">
+                      <AvatarFallback className="bg-primary/10 text-primary font-semibold text-lg select-none">
                         {getInitials(member.name)}
                       </AvatarFallback>
                     </Avatar>
                     {/* Online indicator */}
-                    <div className="absolute -bottom-1 -right-1 h-6 w-6 bg-green-500 rounded-full border-2 border-white flex items-center justify-center">
+                    <div className="absolute -bottom-1 -right-1 h-6 w-6 bg-green-500 rounded-full border-2 border-white flex items-center justify-center select-none">
                       <User className="h-3 w-3 text-white" />
                     </div>
                   </div>
                 </div>
-                <CardTitle className="text-base font-semibold text-foreground group-hover:text-primary transition-colors duration-300">
+                <CardTitle className="text-base font-semibold text-foreground group-hover:text-primary transition-colors duration-300 select-none">
                   {member.name}
                 </CardTitle>
               </CardHeader>
               
               <CardContent className="text-center pb-6 relative z-10">
-                <div className="flex items-center justify-center gap-2 text-sm text-muted-foreground">
+                <div className="flex items-center justify-center gap-2 text-sm text-muted-foreground select-none">
                   <User className="h-4 w-4" />
                   <span>Investigador</span>
                 </div>

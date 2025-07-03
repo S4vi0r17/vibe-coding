@@ -93,7 +93,7 @@ const renderGridItem = (
       />
     </div>
     <CardHeader className="pb-3 pt-6">
-      <CardTitle className="text-xl font-semibold text-foreground group-hover:text-primary transition-colors duration-300 line-clamp-2">
+      <CardTitle className="text-xl font-semibold text-foreground group-hover:text-primary transition-colors duration-300 line-clamp-2 select-none">
         {item.name}
       </CardTitle>
     </CardHeader>

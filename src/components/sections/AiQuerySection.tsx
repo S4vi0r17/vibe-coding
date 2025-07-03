@@ -74,12 +74,12 @@ export default function AiQuerySection() {
         {/* Main Query Card */}
         <Card className="shadow-strong border-border/50 bg-card/80 backdrop-blur-sm">
           <CardHeader className="text-center pb-6">
-            <div className="flex items-center justify-center mb-4">
+            <div className="flex items-center justify-center mb-4 select-none">
               <div className="flex h-16 w-16 items-center justify-center rounded-full bg-gradient-to-br from-primary to-accent">
                 <Bot className="h-8 w-8 text-white" />
               </div>
             </div>
-            <CardTitle className="text-3xl font-bold text-foreground mb-2">
+            <CardTitle className="text-3xl font-bold text-foreground mb-2 select-none">
               Asistente de IA
             </CardTitle>
             <CardDescription className="text-lg text-muted-foreground max-w-2xl mx-auto">
@@ -125,20 +125,20 @@ export default function AiQuerySection() {
 
             {/* Suggested Questions */}
             <div className="mt-8 space-y-4">
-              <h4 className="text-sm font-medium text-muted-foreground text-center">
+              <h4 className="text-sm font-medium text-muted-foreground text-center select-none">
                 Preguntas sugeridas
               </h4>
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
                 {suggestedQuestions.map((suggestedQ, index) => (
                   <Button
                     key={index}
-                    variant="outline"
+                    variant="suggestion"
                     size="sm"
                     onClick={() => handleSuggestedQuestion(suggestedQ)}
                     disabled={isLoading}
-                    className="text-left justify-start h-auto py-3 px-4 hover:bg-primary/5 transition-colors text-sm"
+                    className="text-left justify-start h-auto py-3 px-4 transition-all duration-300 text-sm group"
                   >
-                    <Sparkles className="mr-2 h-4 w-4 text-primary flex-shrink-0" />
+                    <Sparkles className="mr-2 h-4 w-4 text-primary flex-shrink-0 group-hover:rotate-12 transition-transform duration-300" />
                     <span className="truncate">{suggestedQ}</span>
                   </Button>
                 ))}

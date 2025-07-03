@@ -27,18 +27,18 @@ export default function HomePage() {
               {/* Left Column - Content */}
               <div className="text-center lg:text-left space-y-8">
                 {/* Badge */}
-                <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-primary/10 text-primary text-sm font-medium">
+                <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-primary/10 text-primary text-sm font-medium select-none">
                   <Sparkles className="h-4 w-4" />
                   Presentación Académica
                 </div>
 
                 {/* Main heading */}
-                <div className="space-y-4">
+                <div className="space-y-4 select-none">
                   <h1 className="text-4xl sm:text-5xl lg:text-6xl xl:text-7xl font-bold tracking-tight">
                     <span className="block text-foreground">Fundamentos de la</span>
                     <span className="block gradient-text">IA Generativa</span>
                   </h1>
-                  <p className="text-lg sm:text-xl lg:text-2xl text-muted-foreground max-w-2xl mx-auto lg:mx-0 leading-relaxed">
+                  <p className="text-lg sm:text-xl lg:text-2xl text-muted-foreground max-w-2xl mx-auto lg:mx-0 leading-relaxed select-text">
                     Una exploración profunda de los conceptos, modelos y el impacto revolucionario de la Inteligencia Artificial Generativa.
                   </p>
                 </div>
@@ -75,7 +75,7 @@ export default function HomePage() {
                 </div>
 
                 {/* Stats or features */}
-                <div className="grid grid-cols-2 sm:grid-cols-3 gap-6 pt-8 border-t border-border/50">
+                <div className="grid grid-cols-2 sm:grid-cols-3 gap-6 pt-8 border-t border-border/50 select-none">
                   <div className="text-center lg:text-left">
                     <div className="text-2xl font-bold text-foreground">4</div>
                     <div className="text-sm text-muted-foreground">Integrantes</div>
@@ -114,7 +114,7 @@ export default function HomePage() {
                   </div>
                   
                   {/* Floating card */}
-                  <div className="absolute -bottom-6 -left-6 rounded-xl bg-card border border-border shadow-strong p-4 backdrop-blur-sm">
+                  <div className="absolute -bottom-6 -left-6 rounded-xl bg-card border border-border shadow-strong p-4 backdrop-blur-sm select-none hover:shadow-medium transition-shadow duration-300">
                     <div className="flex items-center gap-3">
                       <div className="h-3 w-3 rounded-full bg-green-500 animate-pulse" />
                       <span className="text-sm font-medium text-card-foreground">Modelos Activos</span>
