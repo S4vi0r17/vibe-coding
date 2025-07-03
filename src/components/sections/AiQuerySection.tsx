@@ -99,6 +99,16 @@ export default function AiQuerySection() {
                   placeholder="¿Qué te gustaría saber sobre la IA Generativa?"
                   value={question}
                   onChange={(e) => setQuestion(e.target.value)}
+                  onKeyDown={(e) => {
+                    if (e.key === 'Enter' && !e.shiftKey && !isLoading && question.trim()) {
+                      e.preventDefault();
+                      // Simula el submit del formulario
+                      const form = e.currentTarget.form;
+                      if (form) {
+                        form.requestSubmit();
+                      }
+                    }
+                  }}
                   rows={4}
                   className="text-base rounded-lg shadow-soft focus:ring-primary/50 transition-all duration-300"
                   disabled={isLoading}
