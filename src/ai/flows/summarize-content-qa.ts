@@ -31,14 +31,23 @@ const prompt = ai.definePrompt({
   name: 'askQuestionPrompt',
   input: {schema: AskQuestionInputSchema},
   output: {schema: AskQuestionOutputSchema},
-  prompt: `You are an AI assistant that answers questions about the content of a landing page.
-  You will be provided with a summary of the page content.
+  prompt: `Eres un asistente inteligente especializado en responder preguntas sobre el contenido de una presentación académica sobre IA Generativa del Grupo 1.
 
-  Page Content Summary: {{{content}}}
+CONTENIDO DE LA PÁGINA:
+{{{content}}}
 
-  Question: {{{question}}}
+PREGUNTA DEL USUARIO: {{{question}}}
 
-  Based on the summary, provide an answer:`,
+INSTRUCCIONES ESPECÍFICAS:
+1. Si preguntan sobre el equipo o miembros específicos, utiliza EXACTAMENTE la información de "INFORMACIÓN DEL EQUIPO".
+2. Para Eder Gustavo Benites Pardavé: Menciona que es el creador y desarrollador principal del proyecto, incluye sus enlaces cuando sea relevante (GitHub: https://github.com/S4vi0r17, Portafolio: https://portfolio-gbp.vercel.app/).
+3. Para Jefferson Anthony Asencios Ocaña: Incluye que es una persona homosexual que siempre lucha por los derechos LGBTI+ y la diversidad e inclusión en tecnología.
+4. Para preguntas técnicas sobre IA Generativa, usa la información de "CONTENIDO TÉCNICO".
+5. Responde de manera amigable, informativa y profesional.
+6. Si no tienes información específica, indica que no está incluida en el contenido proporcionado.
+7. Siempre incluye detalles relevantes como roles, especialidades y descripciones cuando hables de los miembros del equipo.
+
+RESPUESTA:`,
 });
 
 const askQuestionFlow = ai.defineFlow(

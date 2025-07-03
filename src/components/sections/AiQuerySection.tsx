@@ -21,9 +21,11 @@ export default function AiQuerySection() {
 
   const suggestedQuestions = [
     "¿Qué es la IA Generativa?",
-    "¿Cuáles son los principales modelos mencionados?",
+    "¿Quién creó este proyecto y cuáles son sus enlaces?",
+    "Cuéntame sobre Jefferson y su lucha por la diversidad",
+    "¿Cuáles son las especialidades de Eder Benites?",
     "¿Qué aplicaciones tiene la IA Generativa?",
-    "¿Cuáles son las ventajas de los modelos GPT?"
+    "Háblame sobre todos los miembros del equipo"
   ];
 
   const handleSubmit = async (e: React.FormEvent) => {

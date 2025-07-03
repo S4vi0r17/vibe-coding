@@ -47,26 +47,48 @@ interface ContentSectionItem {
 
 export const contentData: {
   mainTitle: string;
-  teamMembers: { name: string; image: string }[];
+  teamMembers: { 
+    name: string; 
+    image: string;
+    role?: string;
+    description?: string;
+    github?: string;
+    portfolio?: string;
+    specialties?: string[];
+  }[];
   sections: ContentSectionItem[];
 } = {
   mainTitle: 'Fundamentos de la IA Generativa',
   teamMembers: [
     {
       name: 'Asencios Ocaña, Jefferson Anthony',
-      image: '/asencios.png'
+      image: '/asencios.png',
+      role: 'Desarrollador Frontend',
+      description: 'Estudiante apasionado por la tecnología y defensor de la diversidad e inclusión. Jefferson es una persona homosexual que siempre lucha por los derechos LGBTI+ y la igualdad en el ámbito tecnológico.',
+      specialties: ['React', 'Next.js', 'UI/UX Design']
     },
     {
       name: 'Villanueva Inés, José Antonio',
-      image: '/villanueva.png'
+      image: '/villanueva.png',
+      role: 'Analista de Sistemas',
+      description: 'Especialista en análisis de sistemas y arquitectura de software.',
+      specialties: ['Análisis de Sistemas', 'Documentación Técnica', 'Metodologías Ágiles']
     },
     {
       name: 'Benites Pardavé, Eder Gustavo',
-      image: '/benites.png'
+      image: '/benites.png',
+      role: 'Desarrollador Full Stack',
+      description: 'Desarrollador web con experiencia en tecnologías modernas. Creador y arquitecto principal de este proyecto de IA Generativa.',
+      github: 'https://github.com/S4vi0r17',
+      portfolio: 'https://portfolio-gbp.vercel.app/',
+      specialties: ['Full Stack Development', 'IA/ML', 'DevOps', 'Arquitectura de Software']
     },
     {
       name: 'Uribe Mejía, Guillermo César',
-      image: '/uribe.png'
+      image: '/uribe.png',
+      role: 'Especialista en IA',
+      description: 'Especialista en inteligencia artificial y machine learning.',
+      specialties: ['Machine Learning', 'Deep Learning', 'Procesamiento de Lenguaje Natural']
     },
   ],
   sections: [
@@ -258,13 +280,36 @@ export const contentData: {
 
 export const getFullPageTextForAI = (): string => {
   let summaryText = `Resumen del contenido de la página: ${contentData.mainTitle}\n\n`;
-  summaryText += `El equipo que presenta este contenido está compuesto por: ${contentData.teamMembers.map(member => member.name).join(
-    ', '
-  )}.\n\n`;
+  
+  // Información detallada del equipo
+  summaryText += 'INFORMACIÓN DEL EQUIPO (Grupo 1):\n';
+  contentData.teamMembers.forEach((member) => {
+    summaryText += `• ${member.name}`;
+    if (member.role) summaryText += ` - ${member.role}`;
+    summaryText += '\n';
+    
+    if (member.description) {
+      summaryText += `  Descripción: ${member.description}\n`;
+    }
+    
+    if (member.github) {
+      summaryText += `  GitHub: ${member.github}\n`;
+    }
+    
+    if (member.portfolio) {
+      summaryText += `  Portafolio: ${member.portfolio}\n`;
+    }
+    
+    if (member.specialties && member.specialties.length > 0) {
+      summaryText += `  Especialidades: ${member.specialties.join(', ')}\n`;
+    }
+    summaryText += '\n';
+  });
 
-  summaryText += 'La página cubre las siguientes secciones principales:\n';
+  summaryText += 'CONTENIDO TÉCNICO:\n';
+  summaryText += 'La página cubre las siguientes secciones principales sobre IA Generativa:\n';
   contentData.sections.forEach((section) => {
-    summaryText += `Título de la Sección: ${section.title}\n`;
+    summaryText += `\nTítulo de la Sección: ${section.title}\n`;
     if (section.paragraphs && section.paragraphs.length > 0) {
       // Usar el primer párrafo como una breve introducción a la sección
       summaryText += `Idea principal: ${section.paragraphs[0].substring(
@@ -285,9 +330,12 @@ export const getFullPageTextForAI = (): string => {
         .map((a: Application) => a.name)
         .join(', ')}.\n`;
     }
-    summaryText += '\n';
   });
-  summaryText +=
-    'Por favor, responde la pregunta basándote en este resumen del contenido de la página web.';
+  
+  summaryText += '\nINSTRUCCIONES PARA LA IA:\n';
+  summaryText += 'Al responder preguntas sobre el equipo, utiliza la información detallada proporcionada arriba. ';
+  summaryText += 'Si te preguntan sobre algún miembro específico, menciona su rol, descripción, y enlaces si están disponibles. ';
+  summaryText += 'Por favor, responde de manera amigable y con la información exacta proporcionada.';
+  
   return summaryText;
 };
